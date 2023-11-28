@@ -10,6 +10,9 @@ interface CarouselContainerProps {
 function CarouselProperties(): { perView: number; spacing: number } {
   const breakpoints = { xs: 475, sm: 640, md: 768, lg: 1024 };
   let carouselProps;
+  if (typeof window === 'undefined') {
+    return { perView: 2, spacing: 24 };
+  }
   const screenSize = window.innerWidth;
 
   if (screenSize >= 1280) {
