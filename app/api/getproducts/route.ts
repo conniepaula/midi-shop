@@ -15,7 +15,9 @@ export async function GET(request: Request) {
       name: product.name,
       description: product.description,
       imageUrl: product.images[0],
-      price: price.unit_amount! / 100,
+      price: new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(
+        price.unit_amount! / 100,
+      ),
     };
   });
 
