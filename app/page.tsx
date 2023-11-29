@@ -18,8 +18,9 @@ export default async function Home() {
       {products.map((product) => (
         <Product
           key={product.id}
+          id={product.id}
           sx='keen-slider__slide'
-          src={product.imageUrl}
+          imageUrl={product.imageUrl}
           name={product.name}
           price={product.price}
         />
