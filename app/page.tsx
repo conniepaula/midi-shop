@@ -6,7 +6,6 @@ import CarouselContainer from './components/CarouselContainer';
 interface Product {
   id: string;
   name: string;
-  description: string;
   imageUrl: string;
   price: number;
 }
@@ -14,18 +13,20 @@ interface Product {
 export default async function Home() {
   const products: Array<Product> = await getProducts();
   return (
-    <CarouselContainer>
-      {products.map((product) => (
-        <Product
-          key={product.id}
-          id={product.id}
-          sx='keen-slider__slide'
-          imageUrl={product.imageUrl}
-          name={product.name}
-          price={product.price}
-        />
-      ))}
-    </CarouselContainer>
+    <div className='flex w-screen items-end p-2 md:p-0'>
+      <CarouselContainer>
+        {products.map((product) => (
+          <Product
+            key={product.id}
+            id={product.id}
+            sx='keen-slider__slide'
+            imageUrl={product.imageUrl}
+            name={product.name}
+            price={product.price}
+          />
+        ))}
+      </CarouselContainer>
+    </div>
   );
 }
 
