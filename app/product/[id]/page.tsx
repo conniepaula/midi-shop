@@ -11,7 +11,6 @@ interface pageProps {
 
 const page: FC<pageProps> = async ({ params }) => {
   const product: Product = await getProduct(params.id);
-  console.log(product);
   return (
     <main className='mx-auto my-0 mt-5 flex min-h-[576px] flex-col items-stretch overflow-hidden px-2 md:grid md:grid-cols-2 md:gap-10'>
       <div className='relative flex min-h-[367px] items-center justify-center rounded-lg bg-white bg-gradient-to-br from-neutral-900 to-neutral-800 p-5'>
