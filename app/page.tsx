@@ -1,17 +1,13 @@
 import Image from 'next/image';
-import Button from './components/Button';
-import Product from './components/Product';
-import CarouselContainer from './components/CarouselContainer';
 
-interface Product {
-  id: string;
-  name: string;
-  imageUrl: string;
-  price: number;
-}
+import Button from '@/components/Button';
+import Product from '@/components/Product';
+import CarouselContainer from '@/components/CarouselContainer';
+import { Product as ProductType } from '@/types/productTypes';
+
 
 export default async function Home() {
-  const products: Array<Product> = await getProducts();
+  const products: Array<ProductType> = await getProducts();
   return (
     <div className='flex w-screen items-end p-2 md:p-0'>
       <CarouselContainer>

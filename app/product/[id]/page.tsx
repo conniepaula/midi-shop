@@ -1,19 +1,14 @@
-import Image from 'next/image';
 import { FC } from 'react';
-import Button from '@/app/components/Button';
-import { ShoppingCartSimple } from '@/app/components/phosphor-icons';
+import Image from 'next/image';
+
+import Button from '@/components/Button';
+import { ShoppingCartSimple } from '@/components/phosphor-icons';
+import { Product } from '@/types/productTypes';
 
 interface pageProps {
   params: { id: string };
 }
 
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  imageUrl: string;
-  price: number;
-}
 
 const page: FC<pageProps> = async ({ params }) => {
   const product: Product = await getProduct(params.id);
