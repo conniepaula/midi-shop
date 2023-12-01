@@ -9,7 +9,6 @@ interface pageProps {
   params: { id: string };
 }
 
-
 const page: FC<pageProps> = async ({ params }) => {
   const product: Product = await getProduct(params.id);
   console.log(product);
@@ -38,7 +37,7 @@ export async function getProduct(productId: string) {
   const headers = new Headers();
   headers.append('id', productId);
   const res = await fetch(`${process.env.APP_URL}/api/getproductbyid`, {
-    next: { revalidate: 60 },
+    next: { revalidate: 60 * 60 * 1 },
     headers,
   });
 

@@ -5,7 +5,6 @@ import Product from '@/components/Product';
 import CarouselContainer from '@/components/CarouselContainer';
 import { Product as ProductType } from '@/types/productTypes';
 
-
 export default async function Home() {
   const products: Array<ProductType> = await getProducts();
   return (
@@ -27,7 +26,9 @@ export default async function Home() {
 }
 
 async function getProducts() {
-  const res = await fetch(`${process.env.APP_URL}/api/getproducts`, { next: { revalidate: 60 } });
+  const res = await fetch(`${process.env.APP_URL}/api/getproducts`, {
+    next: { revalidate: 60 * 60 * 1 },
+  });
 
   if (!res.ok) {
     throw new Error('Failed to fetch data');
