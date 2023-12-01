@@ -1,4 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {images: {domains: ['files.stripe.com']}}
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'files.stripe.com',
+        pathname: '/**',
+      },
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
