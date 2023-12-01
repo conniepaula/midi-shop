@@ -22,7 +22,7 @@ const page: FC<pageProps> = async ({ params }) => {
             <h2 className='text-xl font-bold md:text-2xl'>{product.name}</h2>
             <span className='mt-1 text-xl text-red-900 md:text-2xl'>{product.price}</span>
           </div>
-          <span className='text-md text-center leading-7 text-neutral-800 md:text-left'>
+          <span className='text-center text-md leading-7 text-neutral-800 md:text-left'>
             {product.description}
           </span>
         </div>
@@ -32,7 +32,7 @@ const page: FC<pageProps> = async ({ params }) => {
   );
 };
 
-export async function getProduct(productId: string) {
+async function getProduct(productId: string) {
   const headers = new Headers();
   headers.append('id', productId);
   const res = await fetch(`${process.env.APP_URL}/api/getproductbyid`, {
