@@ -15,6 +15,7 @@ function Product(props: ProductProps) {
     <Link
       href={`/product/${id}`}
       passHref
+      prefetch={false}
       className={`group relative flex cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-white bg-gradient-to-br from-neutral-900 to-neutral-800 p-5 ${sx}`}
     >
       <Image src={imageUrl} alt='' height={400} width={500} />
