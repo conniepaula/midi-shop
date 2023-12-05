@@ -1,8 +1,8 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import { FC } from 'react';
 
 import { getCheckoutData } from '@/utils/getCheckoutData';
+import Link from '@/components/Link';
 interface SuccessPageProps {
   searchParams: {
     session_id: string;
@@ -34,12 +34,7 @@ const page: FC<SuccessPageProps> = async (props) => {
       <span className='mt-8 text-center text-md'>
         Your <strong>{product?.name}</strong> will be delivered within 5 working days.
       </span>
-      <Link
-        href='/'
-        className='mt-10 font-bold text-red-900 no-underline hover:text-red-700 hover:transition-colors md:mt-20'
-      >
-        Go Back
-      </Link>
+      <Link href='/'>Go Back</Link>
     </main>
   );
 };
