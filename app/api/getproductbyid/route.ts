@@ -18,6 +18,7 @@ export async function GET(request: Request) {
       price: new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(
         price.unit_amount! / 100,
       ),
+      priceId: price.id,
     };
   ;
 
