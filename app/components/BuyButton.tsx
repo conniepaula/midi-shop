@@ -18,9 +18,7 @@ function BuyButton(props: BuyButtonProps) {
       const response = await axios.post('/api/checkout', { priceId: priceId });
 
       const { checkoutUrl } = response.data;
-      if (typeof window === 'undefined') {
-        throw new Error('Cannot redirect to checkout on server side');
-      }
+
       window.location.href = checkoutUrl;
     } catch (error) {
       alert('Checkout failed');
