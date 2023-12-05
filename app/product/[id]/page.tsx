@@ -18,7 +18,7 @@ const page: FC<ProductPageProps> = async (props) => {
   return (
     <main className='mx-auto my-0 mt-5 flex min-h-[576px] flex-col items-stretch overflow-hidden px-2 md:grid md:grid-cols-2 md:gap-10'>
       <div className='relative flex min-h-[367px] items-center justify-center rounded-lg bg-white bg-gradient-to-br from-neutral-900 to-neutral-800 p-5'>
-        <Image src={product.imageUrl} alt='' width={500} height={500} />
+        <Image src={product.imageUrl} alt={product.name} width={500} height={500} />
       </div>
       <div className='flex max-w-xl flex-col justify-between gap-3 p-2 md:gap-5 '>
         <div className='flex flex-col items-center gap-3 md:items-start md:gap-5'>
