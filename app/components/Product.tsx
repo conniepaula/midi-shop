@@ -1,11 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface ProductProps {
-  imageUrl: string;
-  id: string;
-  name: string;
-  price: number;
+import { Product as ProductType } from '@/types/productTypes';
+
+interface ProductProps extends ProductType {
   sx?: string;
 }
 

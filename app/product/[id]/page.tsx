@@ -1,17 +1,20 @@
-import { FC } from 'react';
+import { FC, cache } from 'react';
 import Image from 'next/image';
 
-import Button from '@/components/Button';
-import { ShoppingCartSimple } from '@/components/phosphor-icons';
 import { Product } from '@/types/productTypes';
 import BuyButton from '@/app/components/BuyButton';
+import { getProductById } from '@/utils/getProductById';
+import stripe from '@/lib/stripe';
 
-interface pageProps {
+interface ProductPageProps {
   params: { id: string };
 }
 
-const page: FC<pageProps> = async ({ params }) => {
-  const product: Product = await getProduct(params.id);
+const page: FC<ProductPageProps> = async (props) => {
+  const { params } = props;
+  const { id } = params;
+
+  const product: Product = await getProductById(id);
   return (
     <main className='mx-auto my-0 mt-5 flex min-h-[576px] flex-col items-stretch overflow-hidden px-2 md:grid md:grid-cols-2 md:gap-10'>
       <div className='relative flex min-h-[367px] items-center justify-center rounded-lg bg-white bg-gradient-to-br from-neutral-900 to-neutral-800 p-5'>
@@ -33,20 +36,13 @@ const page: FC<pageProps> = async ({ params }) => {
   );
 };
 
-async function getProduct(productId: string) {
-  const headers = new Headers();
-  headers.append('id', productId);
-  const res = await fetch(`${process.env.APP_URL}/api/getproductbyid`, {
-    next: { revalidate: 60 * 60 * 1 },
-    headers,
-  });
+export const generateStaticParams = cache(async () => {
+  const res = await stripe.products.list({ expand: ['data.default_price'] });
+  const productIds = res.data.map((product) => product.id);
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch product');
-  }
-  const data = await res.json();
+  return productIds.map((id) => ({ id }));
+});
 
-  return data;
-}
+export const revalidate = 60 * 60 * 1;
 
 export default page;

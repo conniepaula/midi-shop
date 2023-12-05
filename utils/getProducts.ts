@@ -1,8 +1,9 @@
+import { cache } from 'react';
 import Stripe from 'stripe';
-import stripe from '@/lib/stripe';
-import { NextResponse } from 'next/server';
 
-export async function GET(request: Request) {
+import stripe from '@/lib/stripe';
+
+export const getProducts = cache(async () => {
   const res = await stripe.products.list({ expand: ['data.default_price'] });
 
   const products = res.data.map((product) => {
@@ -15,8 +16,9 @@ export async function GET(request: Request) {
       price: new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(
         price.unit_amount! / 100,
       ),
+      priceId: price.id,
     };
   });
 
-  return NextResponse.json(products);
-}
+  return products;
+});

@@ -1,5 +1,6 @@
-import stripe from '@/lib/stripe';
 import Stripe from 'stripe';
+
+import stripe from '@/lib/stripe';
 
 export const getCheckoutData = async (sessionId: string) => {
   const session = await stripe.checkout.sessions.retrieve(sessionId, {

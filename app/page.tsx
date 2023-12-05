@@ -1,12 +1,13 @@
-import Image from 'next/image';
+import { FC } from 'react';
 
-import Button from '@/components/Button';
 import Product from '@/components/Product';
 import CarouselContainer from '@/components/CarouselContainer';
 import { Product as ProductType } from '@/types/productTypes';
+import { getProducts } from '@/utils/getProducts';
 
-export default async function Home() {
+const page: FC = async () => {
   const products: Array<ProductType> = await getProducts();
+
   return (
     <div className='flex w-screen items-end p-2 md:p-0'>
       <CarouselContainer>
@@ -23,17 +24,8 @@ export default async function Home() {
       </CarouselContainer>
     </div>
   );
-}
+};
 
-async function getProducts() {
-  const res = await fetch(`${process.env.APP_URL}/api/getproducts`, {
-    next: { revalidate: 60 * 60 * 1 },
-  });
+export const revalidate = 60 * 60 * 1;
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data');
-  }
-
-  const data = await res.json();
-  return data;
-}
+export default page;
