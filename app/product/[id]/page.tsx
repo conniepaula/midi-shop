@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Button from '@/components/Button';
 import { ShoppingCartSimple } from '@/components/phosphor-icons';
 import { Product } from '@/types/productTypes';
+import BuyButton from '@/app/components/BuyButton';
 
 interface pageProps {
   params: { id: string };
@@ -26,7 +27,7 @@ const page: FC<pageProps> = async ({ params }) => {
             {product.description}
           </span>
         </div>
-        <Button icon={<ShoppingCartSimple size={24} />}> Add to cart</Button>
+        <BuyButton priceId={product.priceId!} />
       </div>
     </main>
   );
